@@ -1,0 +1,96 @@
+/* Weekly annoyances (see annoyances.js). */
+.annoy-modal { position: fixed; inset: 0; background: rgba(0,0,0,.3); display: flex; align-items: center; justify-content: center; z-index: 50; }
+.annoy-window { width: 560px; max-width: 92vw; }
+.annoy-window .titlebar { font-size: 17px; }
+.annoy-window button { font-size: 18px; }
+
+/* Week 4 */
+.annoy-banner { position: fixed; left: 0; right: 0; bottom: 26px; z-index: 40; display: flex; justify-content: center; gap: 20px; align-items: center;
+  font: bold 24px "Comic Sans MS", Impact, sans-serif; padding: 10px; border: 4px dashed #000; animation: adflash .35s steps(1) infinite; }
+@keyframes adflash { 0% { background: #ff00ff; color: #ffff00; } 50% { background: #00ff00; color: #ff0000; } }
+.ad-cta { background: #f00; color: #fff; padding: 2px 12px; border: 3px outset #fff; }
+.phish-body { padding: 16px 20px; font: 17px Tahoma, Arial, sans-serif; }
+.phish-body label { display: block; margin: 8px 0; font-weight: bold; }
+.phish-body input { width: 100%; font-size: 18px; }
+.phish .titlebar { background: linear-gradient(90deg, #a00, #f40); }
+.blinky { color: #c00; animation: blink .5s steps(1) infinite; }
+
+/* Week 5 */
+.rhythm-body { padding: 16px 20px; font: 17px Tahoma, Arial, sans-serif; text-align: center; }
+.notes { display: flex; justify-content: center; gap: 14px; margin: 18px 0; }
+.note { width: 70px; height: 70px; font-size: 40px; display: flex; align-items: center; justify-content: center; background: #d4d0c8; border: 3px outset #fff; color: #555; }
+.note.now { background: #ffff00; color: #000; transform: scale(1.15); border-color: #f90; }
+.note.good { background: #00cc00; color: #fff; }
+.lyric { font: bold 26px "Comic Sans MS", cursive; min-height: 1.4em; color: #1c3d8b; }
+.rhythm.wrong { animation: quake .08s linear 6; }
+.rhythm .titlebar { background: linear-gradient(90deg, #117aca, #0b4b8a); }
+
+/* Week 6+: leaked photo is the background for the rest of the semester */
+body.leaked { background: var(--leak) center / 420px auto repeat; }
+body.leaked .page { background: var(--leak) center / cover no-repeat; }
+body.leaked .content { background: rgba(255, 255, 255, .84); }
+body.leaked .sidebar { background: rgba(221, 227, 240, .88); }
+
+/* Week 7 + 8: flies */
+.annoy-layer { position: fixed; inset: 0; pointer-events: none; z-index: 45; }
+.fly { position: absolute; background: center / contain no-repeat; }
+.fly-center { width: 260px; height: 260px; left: calc(50% - 130px); top: calc(50% - 130px); filter: drop-shadow(6px 10px 6px rgba(0,0,0,.45)); }
+.fly-deco { width: 70px; height: 70px; filter: drop-shadow(3px 5px 3px rgba(0,0,0,.4)); }
+.annoy-flyhost { position: absolute; z-index: 46; }
+.annoy-flyhost .fly-main { position: absolute; inset: 0; filter: drop-shadow(4px 8px 5px rgba(0,0,0,.45)); animation: buzz .15s linear infinite alternate; }
+@keyframes buzz { to { transform: translate(2px, -2px) rotate(4deg); } }
+.annoy-flyhost.hit .fly-main { animation: smack .25s ease-out; }
+@keyframes smack { 40% { transform: scale(.75) rotate(-20deg); } }
+.annoy-flyhost.hit::after { content: "SMACK!"; position: absolute; left: 50%; top: -30px; transform: translateX(-50%); font: 30px Impact, sans-serif; color: #ff0; -webkit-text-stroke: 2px #000; animation: smackpop .3s ease-out both; white-space: nowrap; }
+.annoy-flyhost.squashed .fly-main { animation: none; transform: scaleY(.25) scaleX(1.3); filter: brightness(.4); }
+.annoy-flyhost.squashed::after { content: "SPLAT!"; color: #9c0; }
+body.newspaper-cursor, body.newspaper-cursor * { cursor: var(--newspaper) 6 50, crosshair !important; }
+
+/* Finals */
+.news-body { padding: 16px 20px; text-align: center; font-family: "Times New Roman", serif; background: #f3efe2; }
+.news-body h2 { font-size: 32px; margin: 8px 0; color: #000; }
+.news-flag { display: inline-block; background: #c00; color: #fff; font: bold 18px Arial, sans-serif; padding: 2px 10px; animation: blink 1s steps(1) infinite; }
+.page.quake { animation: quake .09s linear infinite; }
+@keyframes quake { 25% { transform: translate(6px, -4px) rotate(.4deg); } 50% { transform: translate(-5px, 4px); } 75% { transform: translate(4px, 5px) rotate(-.4deg); } }
+.annoy-call { position: fixed; z-index: 55; }
+.annoy-call .window { position: fixed; width: 320px; animation: ringwiggle .2s linear infinite alternate; }
+@keyframes ringwiggle { to { transform: rotate(2deg); } }
+.call-body { padding: 14px; text-align: center; font: 17px Tahoma, Arial, sans-serif; }
+.ring { font-size: 44px; animation: quake .15s linear infinite; }
+.call-body button { margin-top: 10px; background: #c00; color: #fff; font-weight: bold; }
+@keyframes smackpop { from { transform: translateX(-50%) scale(0); } }
+
+/* ---- Ragebait (ragebait.js) ---- */
+.rage { z-index: 60; background: rgba(0, 0, 40, .45); }
+.rage-body { padding: 16px 20px; font: 17px Tahoma, Arial, sans-serif; }
+.rage-body label { display: block; margin: 8px 0; font-weight: bold; }
+.rage-body input:not([type=checkbox]) { width: 100%; font-size: 18px; }
+.rage-body button { margin-top: 10px; font-size: 18px; }
+.rage-error { background: #ffe0e0; border: 2px solid #c00; color: #c00; font-weight: bold; padding: 6px 10px; margin: 6px 0; }
+.rage-ok { background: #e0ffe0; border: 2px solid #080; color: #060; font-weight: bold; padding: 6px 10px; margin: 6px 0; }
+.annoy-window.wrong { animation: quake .08s linear 6; }
+.terms-text { height: 180px; overflow-y: auto; border: 2px inset #fff; background: #fff; padding: 10px; font: 15px "Times New Roman", serif; line-height: 1.6; }
+.terms .rage-body .agree { font-weight: normal; }
+.terms-hint { color: #c00; }
+.math-q { font-size: 30px; text-align: center; }
+.math input { font-size: 28px; text-align: center; }
+
+.ad-player { width: 720px; max-width: 94vw; background: #000; border: 3px solid #333; box-shadow: 0 0 40px #000; }
+.ad-screen { height: 340px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; text-align: center; animation: adpulse 1.2s ease-in-out infinite alternate; }
+@keyframes adpulse { to { filter: brightness(1.25) saturate(1.3); } }
+.ad-art { font-size: 90px; animation: wobbleart .6s ease-in-out infinite alternate; }
+@keyframes wobbleart { to { transform: rotate(6deg) scale(1.08); } }
+.ad-brand { font: 46px Impact, sans-serif; -webkit-text-stroke: 2px #000; letter-spacing: 2px; }
+.ad-line { font: bold 22px Arial, sans-serif; text-shadow: 2px 2px 0 #000; }
+.ad-bar { display: flex; align-items: center; gap: 14px; padding: 8px 12px; color: #fff; font: 16px Arial, sans-serif; }
+.ad-tag { background: #fc0; color: #000; font-weight: bold; padding: 1px 6px; }
+.ad-skip { margin-left: auto; background: rgba(255,255,255,.15); color: #fff; border: 1px solid #fff; font-size: 16px; transition: transform .15s; }
+.ad-progress { height: 5px; background: #444; } .ad-progress div { height: 100%; width: 0; background: #fc0; transition: width 1s linear; }
+
+.music-toggle { position: fixed; right: 12px; bottom: 32px; z-index: 70; font-size: 14px; }
+.demo-skip { float: right; background: #eee; color: #666; font-size: 14px !important; }
+body.rookie .masthead-title::after { content: " (ROOKIE)"; color: #ff4040; font-size: .55em; vertical-align: middle; animation: blink 1s steps(1) infinite; }
+.skip-week { position: fixed; right: 12px; top: 12px; z-index: 90; font-size: 16px !important; background: #ffffcc; border: 2px outset #fff; }
+body.noob .masthead-title::after { content: " (NOOB)"; color: #ff4040; font-size: .55em; vertical-align: middle; animation: blink 1s steps(1) infinite; }
+body.rookie.noob .masthead-title::after { content: " (ROOKIE NOOB)"; }
+.noob-toast { position: fixed; top: 40%; left: 50%; transform: translateX(-50%) rotate(-4deg); z-index: 95; font: 44px Impact, sans-serif; color: #ff0; -webkit-text-stroke: 2px #000; background: rgba(200,0,0,.85); padding: 10px 30px; border: 6px solid #000; animation: pop .3s ease-out both; white-space: nowrap; pointer-events: none; }

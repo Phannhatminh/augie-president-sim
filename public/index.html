@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Office of the President - Augustana College - Official Web Site</title>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/annoyances.css" />
+</head>
+<body>
+<table class="page" cellspacing="0" cellpadding="0">
+  <colgroup><col style="width:300px" /><col /></colgroup>
+  <tr>
+    <td colspan="2" class="masthead">
+      <table width="100%" cellspacing="0" cellpadding="6"><tr>
+        <td width="80" align="center"><div class="seal"><span>A</span></div></td>
+        <td>
+          <div class="masthead-small">AUGUSTANA COLLEGE &middot; ROCK ISLAND, ILLINOIS</div>
+          <div class="masthead-title">OFFICE OF THE PRESIDENT</div>
+          <div class="masthead-small">Official-ish Web Site (this is a game)</div>
+        </td>
+        <td align="right" valign="bottom" class="hud" id="hud"></td>
+      </tr></table>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="notice">
+      <div class="marquee"><span>*** NOTICE: This site is best viewed in Netscape Navigator 4.0 at 800x600 resolution. Please do not press the BACK button while forms are processing. Office hours are 9:00 AM - 3:30 PM, closed for lunch 11:00 AM - 1:30 PM. ***</span></div>
+    </td>
+  </tr>
+  <tr>
+    <td class="sidebar" valign="top">
+      <div class="nav-head">NAVIGATION</div>
+      <ul class="nav">
+        <li><a href="/">Form Edition</a></li>
+        <li><a href="/stick.html">Interactive Edition</a> <span class="new">NEW!</span></li>
+        <li><a href="#" onclick="return false">Press Room</a></li>
+        <li><a href="#" onclick="return false">FOIA Requests</a></li>
+        <li><a href="#" onclick="return false">Site Map</a></li>
+        <li><a href="#" onclick="return false">Contact Webmaster</a></li>
+      </ul>
+      <div class="nav-head">APPROVAL RATINGS</div>
+      <div class="ratings" id="ratings">--</div>
+      <div class="construction"><div class="stripes"></div>UNDER CONSTRUCTION<div class="stripes"></div></div>
+    </td>
+
+    <td class="content" valign="top" id="content">
+      <!-- Start -->
+      <div id="start" class="screen">
+        <h1>Welcome to the Office of the President</h1>
+        <hr />
+        <p id="premise"></p>
+        <p>You will serve one fall semester: <b>9 weeks of classes and Finals Week</b>. Each week a memorandum will arrive at your desk. You may issue an Executive Order or take no action. All constituencies will respond accordingly.</p>
+        <p class="small"><i>By proceeding you agree to the Terms of Office (Form TO-4, available upon written request).</i></p>
+        <center><button id="begin">Take the Oath of Office &gt;&gt;</button></center>
+      </div>
+
+      <!-- Briefing + order form -->
+      <div id="briefing" class="screen" hidden>
+        <div class="memo" id="memo"></div>
+        <div id="fallout"></div>
+
+        <form id="order-form">
+          <table class="form-table" cellspacing="0" cellpadding="4" width="100%">
+            <tr><th colspan="2" class="form-head">FORM EO-1 (Rev. 1987) &mdash; EXECUTIVE ORDER REQUEST</th></tr>
+            <tr>
+              <td width="30%" valign="top"><b>1. Text of Order</b> <span class="req">*</span><br /><span class="small">Any order is permitted. Attach additional sheets if necessary.</span></td>
+              <td><textarea id="policy" rows="5" cols="50"></textarea></td>
+            </tr>
+            <tr>
+              <td valign="top"><b>2. Press Statement</b><br /><span class="small">(Optional)</span></td>
+              <td><input id="spin" size="52" /></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                <button type="submit" id="sign">Submit Form</button>
+                <button type="button" id="ignore">Take No Action</button>
+                <button type="reset">Reset</button>
+              </td>
+            </tr>
+          </table>
+          <p class="small">Please click Submit only ONCE. Processing may take several minutes.</p>
+        </form>
+      </div>
+
+      <!-- Results -->
+      <div id="results" class="screen" hidden>
+        <h2 id="result-heading"></h2>
+        <hr />
+        <div id="result-summary"></div>
+        <h3>PRESS CLIPPINGS</h3>
+        <table width="100%" cellspacing="6" cellpadding="0"><tr id="headlines"></tr></table>
+        <h3>PROFESSOR HIGHLIGHTS</h3>
+        <div class="prof-row" id="professors"></div>
+        <h3>STUDENT HIGHLIGHTS</h3>
+        <div class="prof-row" id="students"></div>
+        <br />
+        <center><button id="next">Proceed to Next Week &gt;&gt;</button></center>
+      </div>
+
+      <div id="error" class="error" hidden></div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="footer">
+      <hr />
+      <center>
+        <div class="counter">You are visitor No. <span id="counter"></span></div>
+        <div class="small">Last updated: 10/23/1998 &middot; &copy; Office of the President &middot; A fictional satire game built at Hacktoberfest Hack Day 2026, powered by Gemma 4.<br />Not affiliated with or endorsed by Augustana College.<br />Music: &ldquo;Fluffing a Duck&rdquo; by Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution.</div>
+      </center>
+    </td>
+  </tr>
+</table>
+
+<!-- Win98-style processing dialog -->
+<div class="overlay" id="loading" hidden>
+  <div class="window">
+    <div class="titlebar">Processing Request... <span class="x">&times;</span></div>
+    <div class="window-body">
+      <div class="hourglass">&#8987;</div>
+      <div><span id="loading-msg">Contacting mainframe...</span><br />
+      <div class="progress"><div class="progress-fill" id="progress"></div></div>
+      <span class="small">Please do not close this window.</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="statusbar" id="statusbar">Done</div>
+
+<script type="module" src="/app.js"></script>
+</body>
+</html>

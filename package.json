@@ -1,0 +1,22 @@
+{
+  "name": "augie-president-sim",
+  "version": "1.0.0",
+  "description": "Satirical Augustana College president simulator powered by Gemma 4",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "node --watch server/index.js",
+    "start": "node server/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@google/genai": "^2.31.0",
+    "express": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=20.12"
+  },
+  "private": true
+}

@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Office of the President - Augustana College - Interactive Edition</title>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/annoyances.css" />
+  <link rel="stylesheet" href="/stick.css" />
+</head>
+<body>
+<table class="page" cellspacing="0" cellpadding="0">
+  <colgroup><col style="width:300px" /><col /></colgroup>
+  <tr>
+    <td colspan="2" class="masthead">
+      <table width="100%" cellspacing="0" cellpadding="6"><tr>
+        <td width="80" align="center"><div class="seal"><span>A</span></div></td>
+        <td>
+          <div class="masthead-small">AUGUSTANA COLLEGE &middot; ROCK ISLAND, ILLINOIS</div>
+          <div class="masthead-title">OFFICE OF THE PRESIDENT</div>
+          <div class="masthead-small">Interactive Multimedia Edition (requires Macromedia Flash 4) &middot; this is a game</div>
+        </td>
+        <td align="right" valign="bottom" class="hud" id="hud"></td>
+      </tr></table>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="notice">
+      <div class="marquee"><span>*** NEW!!! Experience the Presidency in FULL MOTION VIDEO. Decisions must be made in REAL TIME. Hesitation will be recorded in your permanent file. Requires 32MB RAM and a Sound Blaster compatible sound card. ***</span></div>
+    </td>
+  </tr>
+  <tr>
+    <td class="sidebar" valign="top">
+      <div class="nav-head">NAVIGATION</div>
+      <ul class="nav">
+        <li><a href="/">Form Edition</a></li>
+        <li><a href="/stick.html">Interactive Edition</a> <span class="new">NEW!</span></li>
+        <li><a href="#" onclick="return false">Press Room</a></li>
+        <li><a href="#" onclick="return false">FOIA Requests</a></li>
+        <li><a href="#" onclick="return false">Contact Webmaster</a></li>
+      </ul>
+      <div class="nav-head">APPROVAL RATINGS</div>
+      <div class="ratings" id="ratings">--</div>
+      <div class="construction"><div class="stripes"></div>UNDER CONSTRUCTION<div class="stripes"></div></div>
+    </td>
+
+    <td class="content" valign="top" id="content">
+      <div class="player">
+        <div class="titlebar">PRESIDENT_CAM.AVI - RealPlayer G2 <span class="x">&times;</span></div>
+        <div class="stage" id="stage" data-scene="campus" data-outcome="">
+          <svg viewBox="0 0 1000 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect class="sky" width="1000" height="420" />
+
+            <!-- scene: heat -->
+            <g class="scene scene-heat">
+              <circle class="sun" cx="880" cy="80" r="55" />
+              <path class="haze" d="M0 300 Q 50 290 100 300 T 200 300 T 300 300 T 400 300 T 500 300 T 600 300 T 700 300 T 800 300 T 900 300 T 1000 300" />
+            </g>
+            <!-- scene: snow -->
+            <g class="scene scene-snow">
+              <g class="flakes"><circle cx="80" cy="0" r="5"/><circle cx="210" cy="-60" r="4"/><circle cx="330" cy="-20" r="6"/><circle cx="460" cy="-90" r="4"/><circle cx="590" cy="-30" r="5"/><circle cx="720" cy="-70" r="6"/><circle cx="850" cy="-10" r="4"/><circle cx="960" cy="-50" r="5"/><circle cx="140" cy="-120" r="4"/><circle cx="650" cy="-140" r="5"/></g>
+              <rect class="snowbank" y="330" width="1000" height="20" />
+            </g>
+            <!-- scene: flood -->
+            <g class="scene scene-flood"><rect class="water low" x="-50" y="330" width="1100" height="120" /></g>
+            <!-- scene: wifi -->
+            <g class="scene scene-wifi" transform="translate(500 80)">
+              <path class="wifi" d="M-60 0 A85 85 0 0 1 60 0 M-40 20 A57 57 0 0 1 40 20 M-20 40 A28 28 0 0 1 20 40" />
+              <path class="nox" d="M-50 -30 L50 70 M50 -30 L-50 70" />
+            </g>
+            <!-- scene: party -->
+            <g class="scene scene-party">
+              <circle class="disco d1" cx="200" cy="90" r="40" /><circle class="disco d2" cx="500" cy="60" r="30" /><circle class="disco d3" cx="800" cy="100" r="45" />
+            </g>
+            <!-- scene: crowd -->
+            <g class="scene scene-crowd">
+              <g class="sign"><line x1="760" y1="250" x2="760" y2="190"/><rect x="725" y="160" width="70" height="35"/><text x="760" y="184">NO!</text></g>
+              <g class="sign"><line x1="880" y1="250" x2="880" y2="190"/><rect x="845" y="160" width="70" height="35"/><text x="880" y="184">WHY</text></g>
+            </g>
+            <!-- scene: flu -->
+            <g class="scene scene-flu"><circle class="germ g1" cx="300" cy="200" r="30"/><circle class="germ g2" cx="700" cy="150" r="40"/><circle class="germ g3" cx="850" cy="260" r="25"/></g>
+            <!-- scene: finals -->
+            <g class="scene scene-finals">
+              <rect class="book" x="600" y="300" width="90" height="18"/><rect class="book b2" x="605" y="282" width="80" height="18"/><rect class="book" x="598" y="264" width="94" height="18"/>
+              <circle class="clock" cx="160" cy="90" r="40"/><line class="hand" x1="160" y1="90" x2="160" y2="60"/>
+            </g>
+            <!-- scene: campus (default) -->
+            <g class="scene scene-campus"><ellipse class="cloud" cx="200" cy="80" rx="70" ry="25"/><ellipse class="cloud c2" cx="750" cy="60" rx="90" ry="28"/></g>
+
+            <!-- Old Main -->
+            <g class="oldmain">
+              <rect x="40" y="200" width="200" height="140" />
+              <rect x="110" y="150" width="60" height="50" />
+              <path d="M105 150 Q140 90 175 150 Z" />
+              <rect class="win" x="65" y="230" width="25" height="35"/><rect class="win" x="128" y="230" width="25" height="35"/><rect class="win" x="190" y="230" width="25" height="35"/>
+              <text x="140" y="325">OLD MAIN</text>
+            </g>
+            <!-- Old Main burning, then smoking once it's put out -->
+            <g class="burn-fire">
+              <path class="flame" d="M50 340 L80 200 L110 340 Z"/><path class="flame f2" d="M100 340 L140 120 L180 340 Z"/>
+              <path class="flame" d="M160 340 L200 180 L235 340 Z"/><path class="flame f2" d="M110 200 L140 70 L170 200 Z"/>
+            </g>
+            <g class="smoke"><circle cx="120" cy="140" r="30"/><circle class="s2" cx="160" cy="110" r="38"/><circle class="s3" cx="100" cy="90" r="26"/></g>
+            <rect class="ground" y="340" width="1000" height="80" />
+
+            <!-- fire department + police -->
+            <g transform="translate(250 0)"><g class="truck">
+              <rect class="truck-body" x="0" y="285" width="150" height="50" /><rect class="truck-body" x="150" y="300" width="40" height="35" />
+              <rect class="cabwin" x="158" y="306" width="24" height="14" />
+              <line class="ladder" x1="10" y1="280" x2="120" y2="240" />
+              <circle class="wheel" cx="35" cy="338" r="14" /><circle class="wheel" cx="160" cy="338" r="14" />
+              <text class="truck-text" x="70" y="317">R.I.F.D.</text>
+              <path class="hose-water" d="M110 245 Q 60 140 -80 210" />
+            </g></g>
+            <g transform="translate(560 0)"><g class="police">
+              <rect class="police-body" x="0" y="300" width="120" height="35" /><rect class="police-top" x="25" y="285" width="65" height="18" />
+              <rect class="light red" x="38" y="277" width="18" height="9" /><rect class="light blue" x="60" y="277" width="18" height="9" />
+              <circle class="wheel" cx="25" cy="338" r="12" /><circle class="wheel" cx="95" cy="338" r="12" />
+              <text class="police-text" x="60" y="324">POLICE</text>
+            </g></g>
+
+            <!-- money helicopter -->
+            <g transform="translate(560 70)"><g class="heli">
+              <ellipse class="heli-body" cx="0" cy="0" rx="60" ry="28" /><rect class="heli-body" x="50" y="-8" width="90" height="12" />
+              <ellipse class="heli-win" cx="-25" cy="-4" rx="20" ry="13" />
+              <line class="rotor" x1="-90" y1="-34" x2="90" y2="-34" /><line class="heli-strut" x1="0" y1="-28" x2="0" y2="-34" />
+              <line class="heli-strut" x1="-35" y1="30" x2="35" y2="30" />
+              <text class="heli-label" id="heli-label" x="0" y="60">ALUMNI FUND</text>
+              <g class="drop">
+                <g class="bag"><circle cx="0" cy="110" r="30" /><text x="0" y="124">$</text></g>
+                <g class="pile"><rect x="-55" y="110" width="110" height="18"/><rect x="-45" y="92" width="90" height="18"/><rect x="-30" y="74" width="60" height="18"/><text x="0" y="106">$$$</text></g>
+              </g>
+            </g></g>
+
+            <!-- crowd -->
+            <g class="crowd">
+              <g class="mini m1" transform="translate(720 270)"><circle cy="-30" r="12"/><line y1="-18" y2="20"/><line x1="-14" y1="0" x2="14" y2="0"/><line y1="20" x2="-12" y2="50"/><line y1="20" x2="12" y2="50"/></g>
+              <g class="mini m2" transform="translate(780 275)"><circle cy="-30" r="12"/><line y1="-18" y2="20"/><line x1="-14" y1="0" x2="14" y2="0"/><line y1="20" x2="-12" y2="50"/><line y1="20" x2="12" y2="50"/></g>
+              <g class="mini m3" transform="translate(840 270)"><circle cy="-30" r="12"/><line y1="-18" y2="20"/><line x1="-14" y1="0" x2="14" y2="0"/><line y1="20" x2="-12" y2="50"/><line y1="20" x2="12" y2="50"/></g>
+              <g class="mini m4" transform="translate(900 275)"><circle cy="-30" r="12"/><line y1="-18" y2="20"/><line x1="-14" y1="0" x2="14" y2="0"/><line y1="20" x2="-12" y2="50"/><line y1="20" x2="12" y2="50"/></g>
+              <g class="mini m5" transform="translate(955 270)"><circle cy="-30" r="12"/><line y1="-18" y2="20"/><line x1="-14" y1="0" x2="14" y2="0"/><line y1="20" x2="-12" y2="50"/><line y1="20" x2="12" y2="50"/></g>
+            </g>
+
+            <!-- the President -->
+            <g class="pres-pos" transform="translate(480 220)">
+              <g class="pres">
+                <circle class="head" cy="-50" r="26" />
+                <path class="hair" d="M-24 -60 Q0 -90 24 -60" />
+                <circle class="eye" cx="-9" cy="-54" r="3" /><circle class="eye" cx="9" cy="-54" r="3" />
+                <path class="mouth" d="M-9 -40 Q0 -34 9 -40" />
+                <line class="body" y1="-24" y2="60" />
+                <path class="tie" d="M0 -22 L-6 0 L0 20 L6 0 Z" />
+                <g class="arm arm-l"><line x1="0" y1="-10" x2="-40" y2="25" /></g>
+                <g class="arm arm-r"><line x1="0" y1="-10" x2="40" y2="25" /></g>
+                <line class="leg" y1="60" x2="-25" y2="120" /><line class="leg" y1="60" x2="25" y2="120" />
+                <path class="sweat" d="M30 -70 Q36 -58 30 -54 Q24 -58 30 -70 Z" />
+                <rect class="ice" x="-55" y="-90" width="110" height="220" rx="8" />
+              </g>
+            </g>
+
+            <!-- outcomes -->
+            <g class="out out-explode"><circle class="boom b1" cx="500" cy="230" r="60"/><circle class="boom b2" cx="500" cy="230" r="40"/><text class="onomat" x="500" y="120">KA-BOOM</text></g>
+            <g class="out out-flood"><rect class="water high" x="-50" y="420" width="1100" height="420" /></g>
+            <g class="out out-freeze"><rect class="frost" width="1000" height="420" /></g>
+            <g class="out out-money"><text class="cash" x="150" y="0">$</text><text class="cash c2" x="320" y="-80">$</text><text class="cash" x="520" y="-40">$</text><text class="cash c2" x="700" y="-120">$</text><text class="cash" x="880" y="-20">$</text></g>
+            <g class="out out-sleep"><rect class="dim" width="1000" height="420" /><text class="zzz" x="530" y="140">Z</text><text class="zzz z2" x="560" y="110">Z</text><text class="zzz z3" x="590" y="80">Z</text></g>
+            <g class="out out-fire"><path class="flame" d="M100 340 L140 230 L180 340 Z"/><path class="flame f2" d="M300 340 L350 200 L400 340 Z"/><path class="flame" d="M620 340 L670 220 L720 340 Z"/><path class="flame f2" d="M820 340 L860 240 L900 340 Z"/></g>
+            <g class="out out-riot"><rect class="redflash" width="1000" height="420" /><text class="onomat" x="760" y="140">BOOOO!</text></g>
+            <g class="out out-cheer"><rect class="confetti" x="200" y="-20" width="12" height="12"/><rect class="confetti k2" x="420" y="-60" width="12" height="12"/><rect class="confetti k3" x="640" y="-30" width="12" height="12"/><rect class="confetti" x="860" y="-80" width="12" height="12"/><text class="onomat" x="760" y="140">YAAAY!</text></g>
+            <g class="out out-nothing"><circle class="tumbleweed" cx="-60" cy="320" r="22" /><text class="crickets" x="500" y="120">*cricket noises*</text></g>
+          </svg>
+
+          <div class="flash" id="flash" hidden></div>
+          <div class="caption" id="caption"></div>
+          <div class="stamp-big" id="stamp" hidden></div>
+          <div class="choices" id="choices" hidden>
+            <div class="timer"><div class="timer-fill" id="timer-fill"></div><span id="timer-num"></span></div>
+            <div class="choice-row" id="choice-row"></div>
+          </div>
+
+          <div class="stage-start" id="start">
+            <h1>The Presidency: Interactive Edition</h1>
+            <p id="premise"></p>
+            <p><b>Every week a crisis plays out in front of you. Pick a move before the timer runs out. Freezing up is also a decision.</b></p>
+            <button id="begin">&#9654; PLAY</button>
+          </div>
+        </div>
+        <div class="player-controls">&#9664;&#9664; &#9654; &#10074;&#10074; &#9632; &#9654;&#9654; <span class="buffer">Buffering... <span id="buffer">0</span>%</span></div>
+      </div>
+
+      <!-- Results -->
+      <div id="results" class="screen" hidden>
+        <div class="frontpage">
+          <div class="fp-masthead">THE AUGUSTANA OBSERVER <span class="fp-extra">EXTRA! EXTRA!</span></div>
+          <div class="fp-dateline" id="fp-dateline"></div>
+          <div class="fp-headline" id="fp-headline"></div>
+          <div class="fp-photo" id="fp-photo"></div>
+          <div class="fp-caption" id="fp-caption"></div>
+        </div>
+        <h2 id="result-heading"></h2>
+        <hr />
+        <div id="result-summary"></div>
+        <h3>PRESS CLIPPINGS</h3>
+        <table width="100%" cellspacing="6" cellpadding="0"><tr id="headlines"></tr></table>
+        <h3>PROFESSOR HIGHLIGHTS</h3>
+        <div class="prof-row" id="professors"></div>
+        <h3>STUDENT HIGHLIGHTS</h3>
+        <div class="prof-row" id="students"></div>
+        <h3>CONSTITUENT RESPONSE REPORT</h3>
+        <table class="report" width="100%" cellspacing="0" cellpadding="4" border="1">
+          <thead><tr><th>Constituency</th><th>Individual</th><th>Statement</th><th>Score</th></tr></thead>
+          <tbody id="reactions"></tbody>
+        </table>
+        <br />
+        <center><button id="next">&#9654; Play Next Week</button></center>
+      </div>
+
+      <div id="error" class="error" hidden></div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="footer">
+      <hr />
+      <center>
+        <div class="counter">You are visitor No. <span id="counter"></span></div>
+        <div class="small">Last updated: 10/23/1998 &middot; &copy; Office of the President &middot; A fictional satire game built at Hacktoberfest Hack Day 2026, powered by Gemma 4.<br />Not affiliated with or endorsed by Augustana College.<br />Music: &ldquo;Fluffing a Duck&rdquo; by Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution.</div>
+      </center>
+    </td>
+  </tr>
+</table>
+
+<div class="overlay" id="loading" hidden>
+  <div class="window">
+    <div class="titlebar">Processing Request... <span class="x">&times;</span></div>
+    <div class="window-body">
+      <div class="hourglass">&#8987;</div>
+      <div><span id="loading-msg">Contacting mainframe...</span><br />
+      <div class="progress"><div class="progress-fill" id="progress"></div></div>
+      <span class="small">Please do not close this window.</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="statusbar" id="statusbar">Done</div>
+
+<script type="module" src="/stick.js"></script>
+</body>
+</html>

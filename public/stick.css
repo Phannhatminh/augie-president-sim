@@ -1,0 +1,247 @@
+/* Interactive (stick-figure) edition. Rides on style.css. */
+.player { border: 2px outset #fff; background: #d4d0c8; }
+.player .titlebar { font: bold 16px Tahoma, Arial, sans-serif; }
+.player-controls { font: 16px Tahoma, Arial, sans-serif; padding: 4px 10px; letter-spacing: 4px; }
+.player-controls .buffer { letter-spacing: 0; margin-left: 20px; font-size: 14px; }
+
+.stage { position: relative; aspect-ratio: 1000 / 420; max-height: 62vh; width: 100%; overflow: hidden; background: #000; border: 2px inset #fff; }
+.stage svg { width: 100%; height: 100%; display: block; }
+.stage svg * { transform-box: fill-box; }
+
+/* base art */
+.sky { fill: #9ecbff; transition: fill .8s; }
+.ground { fill: #5a8f3a; }
+.oldmain rect, .oldmain path { fill: #b9a27a; stroke: #3b2f1e; stroke-width: 3; }
+.oldmain .win { fill: #2b3a55; }
+.oldmain text { font: bold 18px "Times New Roman", serif; text-anchor: middle; fill: #3b2f1e; }
+.pres line, .pres path:not(.tie):not(.sweat), .mini line { stroke: #000; stroke-width: 6; stroke-linecap: round; fill: none; }
+.mini line { stroke-width: 4; }
+.pres .head, .mini circle { fill: #fff; stroke: #000; stroke-width: 5; }
+.pres .eye { fill: #000; stroke: none; }
+.pres .tie { fill: #cc0000; stroke: #000; stroke-width: 2; }
+.pres .sweat { fill: #4aa3ff; stroke: none; opacity: 0; }
+.pres .ice { fill: rgba(170, 220, 255, .55); stroke: #6fc3ff; stroke-width: 4; opacity: 0; }
+
+/* idle motion */
+.pres { animation: bob 1.6s ease-in-out infinite; transform-origin: 50% 100%; }
+@keyframes bob { 50% { transform: translateY(-4px); } }
+.arm { transform-origin: 0% 0%; }
+.mini > * { animation: bob 1.2s ease-in-out infinite; } /* not .mini itself: its transform attr positions it */
+.mini.m2 > *, .mini.m4 > * { animation-delay: .4s; }
+
+/* scenes: only the active one shows */
+.scene, .out { display: none; }
+.stage[data-scene="heat"] .scene-heat, .stage[data-scene="snow"] .scene-snow, .stage[data-scene="flood"] .scene-flood,
+.stage[data-scene="wifi"] .scene-wifi, .stage[data-scene="party"] .scene-party, .stage[data-scene="crowd"] .scene-crowd,
+.stage[data-scene="flu"] .scene-flu, .stage[data-scene="finals"] .scene-finals, .stage[data-scene="campus"] .scene-campus { display: inline; }
+.stage[data-scene="heat"] .sky { fill: #ffb347; }
+.stage[data-scene="snow"] .sky { fill: #cfd8e3; } .stage[data-scene="snow"] .ground { fill: #f4f8ff; }
+.stage[data-scene="flood"] .sky, .stage[data-scene="flu"] .sky { fill: #8a9aa8; }
+.stage[data-scene="party"] .sky { fill: #2a1046; }
+.stage[data-scene="finals"] .sky { fill: #3d3d5c; }
+.stage[data-scene="heat"] .pres .sweat, .stage[data-scene="finals"] .pres .sweat { opacity: 1; animation: drip 1s linear infinite; }
+@keyframes drip { to { transform: translateY(30px); opacity: 0; } }
+
+.sun { fill: #ffe14d; stroke: #ff8c00; stroke-width: 8; animation: pulse 1.4s ease-in-out infinite; transform-origin: center; }
+@keyframes pulse { 50% { transform: scale(1.15); } }
+.haze { stroke: rgba(255,255,255,.6); stroke-width: 4; fill: none; animation: wobble .8s ease-in-out infinite alternate; }
+@keyframes wobble { to { transform: translateY(-8px) scaleX(1.03); } }
+.flakes circle { fill: #fff; animation: fall 3s linear infinite; }
+.flakes circle:nth-child(2n) { animation-duration: 4s; }
+.flakes circle:nth-child(3n) { animation-duration: 2.4s; }
+@keyframes fall { to { transform: translateY(480px); } }
+.snowbank { fill: #fff; }
+.water { fill: rgba(40, 110, 200, .75); }
+.water.low { animation: wave 1.5s ease-in-out infinite alternate; }
+@keyframes wave { to { transform: translate(30px, -10px); } }
+.wifi { stroke: #333; stroke-width: 10; fill: none; stroke-linecap: round; }
+.nox { stroke: #e00; stroke-width: 14; stroke-linecap: round; animation: blink 0.8s steps(1) infinite; }
+.disco { opacity: .8; animation: disco 0.6s steps(1) infinite; }
+.disco.d1 { fill: #ff2bd6; } .disco.d2 { fill: #2bfff1; animation-delay: .2s; } .disco.d3 { fill: #fff42b; animation-delay: .4s; }
+@keyframes disco { 50% { opacity: .1; } }
+.sign line { stroke: #6b4a2b; stroke-width: 5; } .sign rect { fill: #fff; stroke: #000; stroke-width: 3; }
+.sign text { font: bold 20px Impact, sans-serif; text-anchor: middle; }
+.sign { animation: bob .6s ease-in-out infinite; }
+.germ { fill: #7bd14b; stroke: #3c7a1a; stroke-width: 5; stroke-dasharray: 6 6; animation: float 3s ease-in-out infinite alternate; }
+.germ.g2 { animation-duration: 4s; } .germ.g3 { animation-duration: 2.5s; }
+@keyframes float { to { transform: translate(-40px, -30px) rotate(90deg); } }
+.book { fill: #8b1c1c; stroke: #000; stroke-width: 2; } .book.b2 { fill: #1c3d8b; }
+.clock { fill: #fff; stroke: #000; stroke-width: 5; }
+.hand { stroke: #c00; stroke-width: 5; transform-origin: 0% 100%; animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.cloud { fill: #fff; animation: drift 12s linear infinite alternate; }
+@keyframes drift { to { transform: translateX(120px); } }
+
+/* outcomes */
+.stage[data-outcome="explode"] .out-explode, .stage[data-outcome="flood"] .out-flood, .stage[data-outcome="freeze"] .out-freeze,
+.stage[data-outcome="money"] .out-money, .stage[data-outcome="sleep"] .out-sleep, .stage[data-outcome="fire"] .out-fire,
+.stage[data-outcome="riot"] .out-riot, .stage[data-outcome="cheer"] .out-cheer, .stage[data-outcome="nothing"] .out-nothing { display: inline; }
+.onomat { font: 64px Impact, sans-serif; text-anchor: middle; fill: #fff200; stroke: #000; stroke-width: 4; animation: pop .4s ease-out both; transform-origin: center; }
+@keyframes pop { from { transform: scale(0); } 70% { transform: scale(1.3); } }
+
+.boom { fill: #ff7b00; transform-origin: center; animation: boom 1.2s ease-out both; }
+.boom.b2 { fill: #fff200; animation-delay: .15s; }
+@keyframes boom { from { transform: scale(0); } to { transform: scale(9); opacity: 0; } }
+.stage[data-outcome="explode"] svg { animation: shake .1s linear 12; }
+.stage[data-outcome="explode"] .pres-pos .pres { animation: launch 1.6s ease-in both; }
+@keyframes launch { to { transform: translate(260px, -500px) rotate(720deg); } }
+@keyframes shake { 25% { transform: translate(8px, -6px); } 75% { transform: translate(-8px, 6px); } }
+
+.water.high { animation: rise 2.5s ease-out both; }
+@keyframes rise { to { transform: translateY(-300px); } }
+.stage[data-outcome="flood"] .pres { animation: bobwater 1s ease-in-out infinite; }
+@keyframes bobwater { 50% { transform: translateY(-10px) rotate(-8deg); } }
+
+.frost { fill: rgba(160, 210, 255, .45); animation: fadein 1s both; }
+@keyframes fadein { from { opacity: 0; } }
+.stage[data-outcome="freeze"] .pres { animation: none; }
+.stage[data-outcome="freeze"] .pres .ice { opacity: 1; animation: fadein .8s both; }
+
+.cash { font: bold 70px "Courier New", monospace; fill: #0a8f2a; stroke: #000; stroke-width: 2; animation: fall 2.2s linear infinite; }
+.cash.c2 { animation-duration: 1.7s; }
+.stage[data-outcome="money"] .arm-l, .stage[data-outcome="cheer"] .arm-l, .stage[data-outcome="dance"] .arm-l { animation: wave-l .4s ease-in-out infinite alternate; }
+.stage[data-outcome="money"] .arm-r, .stage[data-outcome="cheer"] .arm-r, .stage[data-outcome="dance"] .arm-r { animation: wave-r .4s ease-in-out infinite alternate; }
+@keyframes wave-l { from { transform: rotate(90deg); } to { transform: rotate(140deg); } }
+@keyframes wave-r { from { transform: rotate(-90deg); } to { transform: rotate(-140deg); } }
+
+.dim { fill: rgba(0, 0, 40, .55); animation: fadein 1s both; }
+.zzz { font: bold 48px "Comic Sans MS", cursive; fill: #fff; animation: zz 2s ease-out infinite; }
+.zzz.z2 { animation-delay: .5s; } .zzz.z3 { animation-delay: 1s; }
+@keyframes zz { from { opacity: 0; transform: translate(0, 20px); } 50% { opacity: 1; } to { opacity: 0; transform: translate(30px, -30px); } }
+.stage[data-outcome="sleep"] .pres-pos .pres { animation: tip 1.2s ease-in both; transform-origin: 50% 100%; }
+@keyframes tip { to { transform: rotate(80deg) translate(20px, 20px); } }
+
+.flame { fill: #ff4500; stroke: #ffcc00; stroke-width: 6; transform-origin: 50% 100%; animation: flicker .25s ease-in-out infinite alternate; }
+.flame.f2 { animation-duration: .35s; }
+@keyframes flicker { to { transform: scaleY(1.25) skewX(6deg); } }
+.stage[data-outcome="fire"] .sky { fill: #4a0d00; }
+
+.redflash { fill: #f00; animation: flash .5s steps(1) 5 both; }
+@keyframes flash { 50% { opacity: 0; } to { opacity: 0; } }
+.stage[data-outcome="riot"] .crowd { animation: charge 2.2s ease-in both; }
+@keyframes charge { to { transform: translateX(-300px); } }
+.stage[data-outcome="riot"] .mini line, .stage[data-outcome="riot"] .mini circle { stroke: #c00; }
+.stage[data-outcome="riot"] .pres-pos .pres { animation: cower .3s ease-in-out infinite alternate; }
+@keyframes cower { to { transform: translateX(-6px) scaleY(.9); } }
+
+.confetti { fill: #ff2bd6; animation: fall 2s linear infinite; } .confetti.k2 { fill: #2bfff1; animation-duration: 1.6s; } .confetti.k3 { fill: #fff200; animation-duration: 2.4s; }
+.stage[data-outcome="cheer"] .mini > * { animation: jump .4s ease-in-out infinite alternate; }
+@keyframes jump { to { transform: translateY(-30px); } }
+
+.stage[data-outcome="dance"] .pres-pos .pres { animation: dance .5s ease-in-out infinite alternate; }
+@keyframes dance { from { transform: rotate(-15deg) translateY(0); } to { transform: rotate(15deg) translateY(-25px); } }
+.stage[data-outcome="dance"] .sky { animation: rainbow 1s steps(4) infinite; }
+@keyframes rainbow { 25% { fill: #ff2bd6; } 50% { fill: #2bfff1; } 75% { fill: #fff42b; } }
+
+.stage[data-outcome="flee"] .pres-pos .pres { animation: flee 1.8s ease-in both; }
+@keyframes flee { 15% { transform: translateX(20px); } to { transform: translateX(-700px); } }
+
+.tumbleweed { fill: none; stroke: #8b6b3a; stroke-width: 6; stroke-dasharray: 10 6; animation: roll 4s linear both; }
+@keyframes roll { to { transform: translateX(1150px) rotate(1080deg); } }
+.crickets { font: italic 36px "Times New Roman", serif; text-anchor: middle; fill: #000; animation: fadein 2s both; }
+.stage[data-outcome="nothing"] .pres { animation: none; }
+.stage[data-outcome="nothing"] .pres .sweat { opacity: 1; animation: drip .7s linear infinite; }
+
+/* HTML overlays on the stage */
+.caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 10px 18px; background: rgba(0,0,0,.72); color: #fff; font: 22px "Courier New", monospace; min-height: 2.4em; }
+.caption:empty { display: none; }
+.caption .title { display: inline-block; background: #ffff00; color: #000; font-weight: bold; padding: 0 6px; margin-bottom: 4px; font-size: 26px; }
+.stamp-big { position: absolute; top: 18%; left: 50%; transform: translateX(-50%) rotate(-8deg); font: 88px Impact, sans-serif; padding: 0 24px; border: 8px solid; background: rgba(255,255,255,.85); animation: pop .35s ease-out both; white-space: nowrap; }
+.stamp-big.fail { color: #c00; } .stamp-big.win { color: #0a8f2a; } .stamp-big.froze { color: #1c3d8b; }
+
+.choices { position: absolute; left: 0; right: 0; top: 0; padding: 16px; background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,0)); }
+.choice-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.choice { width: 30%; min-width: 200px; font: bold 22px Tahoma, Arial, sans-serif; padding: 16px 10px; background: #fffbe6; border: 4px outset #ffcc00; animation: pop .3s ease-out both; }
+.choice:nth-child(2) { animation-delay: .12s; } .choice:nth-child(3) { animation-delay: .24s; }
+.choice:hover { background: #ffff00; }
+.choice .key { display: block; font-size: 14px; color: #666; }
+.timer { position: relative; height: 26px; border: 2px inset #fff; background: #300; margin: 0 auto 12px; max-width: 700px; }
+.timer-fill { height: 100%; width: 100%; background: linear-gradient(90deg, #f00, #ff0); }
+.timer span { position: absolute; inset: 0; text-align: center; font: bold 20px "Courier New", monospace; color: #fff; text-shadow: 1px 1px 0 #000; }
+.timer.urgent { animation: shake .1s linear infinite; }
+
+.stage-start { position: absolute; inset: 0; background: rgba(0, 0, 60, .88); color: #fff; padding: 24px 40px; overflow: auto; font-size: 22px; }
+.stage-start h1 { color: #ffcc00; font-size: 44px; }
+.stage-start #begin { font-size: 30px; padding: 12px 44px; }
+
+#results { margin-top: 16px; }
+
+/* ---- Campus reaction sequence (after Gemma answers) ---- */
+.burn-fire, .smoke, .truck, .police, .heli, .bag, .pile { display: none; }
+
+/* students riot or celebrate */
+.stage[data-react="riot"] .crowd { animation: charge 2.2s ease-in both; }
+.stage[data-react="riot"] .mini line, .stage[data-react="riot"] .mini circle { stroke: #c00; }
+.stage[data-react="cheer"] .mini > * { animation: jump .4s ease-in-out infinite alternate; }
+.stage[data-react="cheer"] .out-cheer, .stage[data-react="riot"] .out-riot { display: inline; }
+
+/* Old Main on fire */
+.stage[data-burn="on"] .burn-fire { display: inline; }
+.stage[data-burn="on"] .sky { fill: #5a1a00; }
+.stage[data-burn="out"] .smoke { display: inline; }
+.stage[data-burn="out"] .oldmain rect:not(.win), .stage[data-burn="out"] .oldmain path { fill: #3a3a3a; }
+.smoke circle { fill: #777; opacity: .7; animation: zz 3s ease-out infinite; }
+.smoke .s2 { animation-delay: 1s; } .smoke .s3 { animation-delay: 2s; }
+
+/* fire department + police */
+.stage[data-rescue="on"] .truck, .stage[data-rescue="on"] .police { display: inline; }
+.truck { animation: drive-in 1.4s ease-out both; }
+.police { animation: drive-in-r 1.4s ease-out both; }
+@keyframes drive-in { from { transform: translateX(-700px); } }
+@keyframes drive-in-r { from { transform: translateX(700px); } }
+.truck-body { fill: #d00; stroke: #000; stroke-width: 3; } .cabwin { fill: #bde; }
+.ladder { stroke: #ccc; stroke-width: 8; stroke-dasharray: 4 6; }
+.wheel { fill: #222; stroke: #888; stroke-width: 3; }
+.truck-text, .police-text { font: bold 16px Arial, sans-serif; text-anchor: middle; fill: #fff; }
+.police-text { fill: #000; }
+.hose-water { fill: none; stroke: #4aa3ff; stroke-width: 10; stroke-linecap: round; stroke-dasharray: 18 10; animation: spray .3s linear infinite; opacity: 0; animation-delay: 1.4s; }
+.stage[data-rescue="on"] .hose-water { opacity: 1; transition: opacity .2s 1.4s; }
+@keyframes spray { to { stroke-dashoffset: -28; } }
+.police-body { fill: #fff; stroke: #000; stroke-width: 3; } .police-top { fill: #111; }
+.light.red { fill: #f00; animation: blink .4s steps(1) infinite; } .light.blue { fill: #00f; animation: blink .4s steps(1) infinite reverse; }
+
+/* money helicopter */
+.stage[data-heli] .heli { display: inline; animation: fly-in 1.4s ease-out both; }
+.stage[data-heli="alumni"] .bag, .stage[data-heli="board"] .pile { display: inline; }
+@keyframes fly-in { from { transform: translate(700px, -150px); } }
+.heli-body { fill: #2a5a2a; stroke: #000; stroke-width: 3; } .heli-win { fill: #bde; stroke: #000; stroke-width: 2; }
+.rotor { stroke: #000; stroke-width: 6; transform-origin: center; animation: rotor .12s linear infinite; }
+@keyframes rotor { 50% { transform: scaleX(.1); } }
+.heli-strut { stroke: #000; stroke-width: 4; }
+.heli-label { font: bold 20px Impact, sans-serif; text-anchor: middle; fill: #fff200; stroke: #000; stroke-width: 1; }
+.drop { animation: drop 1s ease-in 1.5s both; }
+@keyframes drop { to { transform: translateY(180px); } }
+.bag circle { fill: #c8a165; stroke: #000; stroke-width: 3; }
+.bag text, .pile text { font: bold 30px Impact, sans-serif; text-anchor: middle; fill: #0a6a1a; }
+.pile rect { fill: #3fae4a; stroke: #0a4a1a; stroke-width: 3; }
+.pile text { fill: #fff; font-size: 20px; }
+
+/* final verdict stamps */
+.stamp-big.success { color: #0a8f2a; } .stamp-big.disappoint { color: #c00; } .stamp-big.unknown { color: #7a1fa2; }
+
+/* camera flash + black-and-white freeze */
+.flash { position: absolute; inset: 0; background: #fff; animation: camflash .6s ease-out both; pointer-events: none; }
+@keyframes camflash { from { opacity: 1; } to { opacity: 0; } }
+.stage.bw { filter: grayscale(1) contrast(1.25); transition: filter 1.2s; }
+
+/* newspaper front page */
+.frontpage { background: #f3efe2; border: 1px solid #000; padding: 14px 20px; margin-bottom: 18px; box-shadow: 4px 4px 0 #999; font-family: "Times New Roman", serif; }
+.fp-masthead { font: bold 46px "Old English Text MT", "Times New Roman", serif; text-align: center; border-bottom: 3px double #000; }
+.fp-extra { font: bold 22px Impact, sans-serif; color: #c00; vertical-align: middle; animation: blink 1s steps(1) infinite; }
+.fp-dateline { text-align: center; font-size: 14px; border-bottom: 1px solid #000; padding: 2px 0; text-transform: uppercase; letter-spacing: 2px; }
+.fp-headline { font: bold 44px "Times New Roman", serif; text-align: center; margin: 10px 0; line-height: 1.05; text-transform: uppercase; }
+.fp-photo { width: 78%; margin: 0 auto; border: 6px solid #fff; outline: 1px solid #000; animation: photo-drop .9s cubic-bezier(.2,1.4,.5,1) both; }
+@keyframes photo-drop { from { transform: scale(1.6) rotate(-14deg); opacity: 0; } to { transform: rotate(-1.5deg); } }
+.fp-photo .stage { filter: grayscale(1) contrast(1.3) sepia(.2); max-height: none; border: 0; pointer-events: none; }
+/* freeze every animation in the photo on its final frame */
+.fp-photo .stage * { animation-play-state: paused !important; animation-delay: -9.9s !important; }
+.fp-caption { text-align: center; font-style: italic; font-size: 17px; margin-top: 8px; }
+
+/* scenes reusing the flood layer */
+.stage[data-scene="punch"] .scene-flood, .stage[data-scene="sewage"] .scene-flood { display: inline; }
+.stage[data-scene="punch"] .water.low { fill: rgba(40, 200, 255, .9); stroke: #fff; stroke-width: 6; stroke-dasharray: 4 14; }
+.stage[data-scene="punch"] .sky { fill: #c9a0dc; }
+.stage[data-scene="sewage"] .water.low { fill: rgba(110, 80, 30, .92); }
+.stage[data-scene="sewage"] .sky { fill: #9aa86a; }
+.stage[data-scene="sewage"] .pres .sweat { opacity: 1; fill: #7a6; animation: drip 1s linear infinite; }
+.choice:disabled { opacity: .55; cursor: not-allowed; }

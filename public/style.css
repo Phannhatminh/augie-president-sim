@@ -1,0 +1,156 @@
+/* Late-90s government web site. Deliberately ugly and slow. */
+body {
+  margin: 0; padding: 10px 10px 34px; box-sizing: border-box; min-height: 100vh; display: flex;
+  background: #d4d0c8 repeating-linear-gradient(45deg, #d4d0c8 0 6px, #ccc8bf 6px 12px);
+  font-family: "Times New Roman", Times, serif; font-size: 20px; color: #000;
+}
+.page { table-layout: fixed; width: 100%; max-width: 1600px; margin: 0 auto; flex: 1; height: calc(100vh - 44px); background: #fff; border: 2px outset #fff; }
+a { color: #0000ee; } a:visited { color: #551a8b; }
+h1, h2, h3 { font-family: "Times New Roman", serif; color: #000066; }
+h1 { font-size: 38px; margin: 4px 0; } h2 { font-size: 30px; margin: 4px 0; } h3 { font-size: 22px; margin: 20px 0 8px; text-decoration: underline; }
+hr { border: 0; border-top: 2px groove #c0c0c0; }
+.small { font-size: 15px; }
+.req { color: red; }
+[hidden] { display: none !important; }
+
+.masthead { background: #000066; color: #ffcc00; border-bottom: 4px double #ffcc00; }
+.masthead-title { font-size: 44px; font-weight: bold; letter-spacing: 3px; }
+.masthead-small { font-size: 15px; color: #fff; letter-spacing: 1px; }
+.seal { width: 96px; height: 96px; border-radius: 50%; background: #ffcc00; border: 3px double #000066; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 2px #ffcc00; }
+.seal span { font: bold 48px Georgia, serif; color: #000066; }
+.hud { color: #fff; font: bold 20px "Courier New", monospace; white-space: nowrap; }
+
+.notice { background: #ffffcc; border-bottom: 1px solid #999; font: bold 17px Arial, sans-serif; color: #cc0000; overflow: hidden; }
+.marquee { white-space: nowrap; overflow: hidden; padding: 4px 0; width: 100%; }
+.marquee span { display: inline-block; padding-left: 100vw; animation: marquee 40s linear infinite; }
+@keyframes marquee { to { transform: translateX(-100%); } }
+
+.sidebar { width: 300px; background: #dde3f0; border-right: 2px solid #000066; padding: 10px; font-size: 19px; }
+.nav-head { background: #000066; color: #fff; font: bold 15px Arial, sans-serif; padding: 4px 6px; margin-top: 12px; }
+.nav { margin: 4px 0; padding-left: 18px; list-style: square; }
+.ratings { font: 15px "Courier New", monospace; padding: 4px; background: #fff; border: 1px inset #999; }
+.ratings .bar { display: inline-block; height: 8px; background: #000066; vertical-align: middle; }
+.construction { margin-top: 12px; text-align: center; font: bold 10px Arial, sans-serif; background: #ffcc00; border: 1px solid #000; }
+.stripes { height: 8px; background: repeating-linear-gradient(45deg, #000 0 6px, #ffcc00 6px 12px); }
+
+.content { padding: 18px 28px; }
+/* Pages "load" top to bottom like a 28.8k modem. */
+.screen.loading-in { animation: dialup 2.4s steps(14) both; }
+@keyframes dialup { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+
+button {
+  font: 18px "MS Sans Serif", Tahoma, Arial, sans-serif; padding: 6px 20px; cursor: pointer;
+  background: #d4d0c8; border: 2px outset #fff; color: #000;
+}
+button:active { border-style: inset; }
+button:disabled { color: #808080; cursor: wait; }
+textarea, input { font: 20px "Courier New", monospace; border: 2px inset #999; max-width: 100%; box-sizing: border-box; }
+textarea { width: 100%; }
+
+.memo { font: 20px "Courier New", monospace; border: 1px solid #000; padding: 16px; background: #fffff0; white-space: pre-wrap; }
+.memo .stamp { color: #cc0000; border: 3px double #cc0000; display: inline-block; padding: 0 6px; font-weight: bold; transform: rotate(-4deg); }
+.fallout { font: 18px "Courier New", monospace; border: 1px dashed #cc0000; background: #fff0f0; padding: 6px; margin-top: 8px; }
+.form-table { border: 2px groove #c0c0c0; margin-top: 14px; background: #f4f4f4; }
+.form-head { background: #c0c0c0; text-align: left; font: bold 12px Arial, sans-serif; }
+
+.clipping { border: 1px solid #000; padding: 6px; background: #f8f6ee; vertical-align: top; width: 33%; }
+.clipping .outlet { font: bold 10px Arial, sans-serif; text-transform: uppercase; border-bottom: 1px solid #000; }
+.clipping .head { font-weight: bold; font-size: 22px; margin: 4px 0; }
+.report { border-collapse: collapse; font-size: 18px; }
+.report th { background: #000066; color: #fff; font: bold 11px Arial, sans-serif; }
+.report td.group { background: #dde3f0; font-weight: bold; }
+.pos { color: #008000; font-weight: bold; } .neg { color: #cc0000; font-weight: bold; }
+.status { font: bold 14px Arial, sans-serif; padding: 0 6px; border: 2px solid; }
+.status.RIOT, .status.BACKLASH { color: #cc0000; animation: blink 1s steps(1) infinite; }
+.status.APPROVED { color: #008000; } .status.CONTESTED { color: #996600; }
+@keyframes blink { 50% { visibility: hidden; } }
+.order-no { font: 12px "Courier New", monospace; color: #666; }
+.verdict { border: 3px double #000066; padding: 8px; background: #ffffcc; margin: 10px 0; }
+.error { margin-top: 10px; padding: 8px; border: 2px solid red; background: #ffe0e0; font-family: "Courier New", monospace; }
+
+.footer { padding: 4px 10px 10px; }
+.counter span { font: bold 14px "Courier New", monospace; background: #000; color: #0f0; padding: 0 4px; letter-spacing: 2px; }
+
+/* Windows 98 dialog */
+.overlay { position: fixed; inset: 0; background: rgba(0,0,0,.15); display: flex; align-items: center; justify-content: center; cursor: wait; }
+.window { width: 520px; max-width: 92vw; background: #d4d0c8; border: 2px outset #fff; font: 17px Tahoma, Arial, sans-serif; }
+.titlebar { background: linear-gradient(90deg, #000080, #1084d0); color: #fff; font-weight: bold; padding: 3px 6px; display: flex; justify-content: space-between; }
+.titlebar .x { background: #d4d0c8; color: #000; border: 1px outset #fff; padding: 0 4px; line-height: 14px; }
+.window-body { display: flex; gap: 12px; padding: 14px; align-items: flex-start; }
+.hourglass { font-size: 30px; animation: flip 2s steps(2) infinite; }
+@keyframes flip { 50% { transform: rotate(180deg); } }
+.progress { width: 260px; max-width: 100%; height: 16px; border: 2px inset #fff; background: #fff; margin: 6px 0; padding: 1px; box-sizing: border-box; }
+.progress-fill { height: 100%; width: 0; background: repeating-linear-gradient(90deg, #000080 0 9px, transparent 9px 11px); }
+
+.statusbar { position: fixed; left: 0; right: 0; bottom: 0; background: #d4d0c8; border-top: 2px outset #fff; font: 16px Tahoma, Arial, sans-serif; padding: 4px 10px; }
+
+@media (max-width: 640px) {
+  .sidebar { display: none; }
+  .masthead-title { font-size: 18px; }
+  .clipping { display: block; width: auto; margin-bottom: 6px; }
+}
+
+/* Demo scale: fill the projector, no dead space. */
+.page > tbody > tr:nth-child(3) { height: 100%; }
+.content { position: relative; }
+.screen { min-height: 100%; }
+#policy { min-height: 30vh; }
+.report th { font-size: 15px; padding: 8px; }
+.clipping { padding: 12px; }
+.clipping .outlet { font-size: 14px; }
+.status { font-size: 22px; }
+.order-no { font-size: 18px; }
+.titlebar .x { line-height: 20px; }
+.hourglass { font-size: 48px; }
+.progress { width: 400px; height: 24px; }
+.counter span { font-size: 20px; }
+.construction { font-size: 14px; }
+.construction .stripes { height: 12px; }
+
+/* A few letters rendered in the wrong font, like a broken font file. */
+.glitch { display: inline-block; }
+.glitch.g0 { font-family: "Comic Sans MS", cursive; transform: translateY(3px) rotate(-6deg); }
+.glitch.g1 { font-family: Impact, sans-serif; transform: translateY(-2px); }
+.glitch.g2 { font-family: "Courier New", monospace; font-weight: normal; transform: rotate(8deg); }
+.glitch.g3 { font-family: Wingdings, "Zapf Dingbats", serif; }
+.glitch.g4 { font-family: "Brush Script MT", cursive; transform: scale(1.25); }
+#start { font-size: 26px; line-height: 1.45; }
+#start h1 { font-size: 54px; }
+#start #begin { font-size: 28px; padding: 14px 40px; margin-top: 20px; }
+#start .small { font-size: 18px; }
+
+/* Highlighter-pen emphasis, 1998 style. */
+.hl { background: #ffff00; color: #000; padding: 0 4px; font-weight: bold; }
+.hl-red { background: #cc0000; color: #fff; padding: 0 4px; font-weight: bold; }
+.hl-green { background: #00cc00; color: #000; padding: 0 4px; font-weight: bold; }
+.hl-big { font-size: 1.35em; }
+.memo .re { display: block; font-size: 30px; font-weight: bold; background: #ffff00; padding: 4px 8px; margin: 6px 0; border: 2px dashed #cc0000; }
+.memo .body { background: linear-gradient(transparent 55%, #ffff99 55%); }
+.new { color: #cc0000; font: bold 14px Arial, sans-serif; animation: blink 1s steps(1) infinite; vertical-align: super; }
+.fallout b { background: #cc0000; color: #fff; padding: 0 4px; }
+.ratings .num { padding: 0 3px; font-weight: bold; }
+.hud .hl, .hud .hl-red, .hud .hl-green { font-size: 24px; }
+.clipping .head { background: linear-gradient(transparent 60%, #ffff00 60%); display: inline; }
+.ratings { font: 18px Arial, sans-serif; padding: 6px; }
+.ratings .rating { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+.ratings .label { font-weight: bold; color: #000066; }
+.ratings .num { font-size: 18px; }
+.ratings .bar { display: block; height: 10px; margin-top: 3px; border: 1px solid #000066; box-sizing: border-box; }
+.ratings .overall { border-top: 2px groove #c0c0c0; padding-top: 8px; margin-top: 12px; font-size: 20px; }
+
+/* Professor Highlight cards */
+.prof-row { display: flex; gap: 16px; flex-wrap: wrap; }
+.prof-card { flex: 1 1 300px; border: 4px double #7a0019; background: #fff8e7; padding: 12px 16px; box-shadow: 4px 4px 0 #c8b88a; }
+.prof-badge { display: inline-block; background: #7a0019; color: #ffcc00; font: bold 15px Arial, sans-serif; padding: 3px 10px; text-transform: uppercase; letter-spacing: 1px; }
+.prof-name { font: bold 26px Georgia, "Times New Roman", serif; color: #7a0019; margin: 8px 0 4px; }
+.prof-card blockquote { margin: 0; font: italic 20px Georgia, "Times New Roman", serif; }
+
+/* Student Highlight cards: a phone-screen social post, against the formal professor cards */
+.student-card { flex: 1 1 300px; background: #fff; border: 1px solid #cfd9de; border-radius: 16px; padding: 12px 16px; font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12); }
+.student-top { display: flex; align-items: center; gap: 10px; }
+.student-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #ff4fa3, #6a5cff); color: #fff; font: bold 22px Arial, sans-serif; display: flex; align-items: center; justify-content: center; flex: none; }
+.student-name { font-weight: bold; font-size: 18px; color: #0f1419; }
+.student-handle { font-size: 14px; color: #536471; }
+.student-badge { margin-left: auto; background: #1d9bf0; color: #fff; font: bold 12px Arial, sans-serif; padding: 3px 10px; border-radius: 999px; text-transform: uppercase; white-space: nowrap; }
+.student-quote { font-size: 20px; color: #0f1419; margin: 10px 0 8px; }
+.student-stats { font-size: 14px; color: #536471; }
